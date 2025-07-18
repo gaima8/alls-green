@@ -29,7 +29,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix: {}
-    steps: []
+    steps:
+    - run: exit 0
 
   partially-failing-partially-skipped-matrix:
     runs-on: ubuntu-latest

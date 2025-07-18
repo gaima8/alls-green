@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: {}
+      matrix: {"empty":[]}
     steps:
     - run: exit 0
 

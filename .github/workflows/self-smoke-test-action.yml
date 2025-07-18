@@ -24,6 +24,13 @@ jobs:
     steps:
     - run: exit 0
 
+  empty-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: {}
+    steps: []
+
   partially-failing-partially-skipped-matrix:
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.rc == '1' }}
@@ -230,6 +237,7 @@ jobs:
     - allow-failures-n-skips
     - allow-skips
     - allow-partials
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:

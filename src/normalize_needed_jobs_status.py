@@ -156,7 +156,7 @@ def main(argv):
     with summary_file_path.open(mode=FILE_APPEND_MODE) as summary_file:
         write_lines_to_streams(
             (
-                jobs.items()
+                str(jobs.items())
             ),
             (sys.stderr, summary_file),
         )

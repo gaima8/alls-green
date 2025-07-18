@@ -49,6 +49,7 @@ jobs:
     needs:
     - succeeding-job
     - skipped-job
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -70,6 +71,7 @@ jobs:
     needs:
     - failing-job
     - skipped-job
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -92,6 +94,7 @@ jobs:
     - failing-job
     - succeeding-job
     - skipped-job
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -161,6 +164,7 @@ jobs:
     - failing-job
     - succeeding-job
     - skipped-job
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -172,7 +176,7 @@ jobs:
       continue-on-error: true
       with:
         allowed-failures: failing-job
-        allowed-skips: skipped-job
+        allowed-skips: skipped-job, empty-matrix
         jobs: ${{ toJSON(needs) }}
     - name: Fail on unexpected outcome (assertion step)
       run: exit 1
@@ -185,6 +189,7 @@ jobs:
     - failing-job
     - succeeding-job
     - skipped-job
+    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -195,7 +200,7 @@ jobs:
       id: check
       continue-on-error: true
       with:
-        allowed-skips: failing-job, skipped-job
+        allowed-skips: failing-job, skipped-job, empty-matrix
         jobs: ${{ toJSON(needs) }}
     - name: Fail on unexpected outcome (assertion step)
       run: exit 1
@@ -208,6 +213,7 @@ jobs:
     - failing-job
     - succeeding-job
     - skipped-job
+    - empty-matrix
     - partially-failing-partially-skipped-matrix
     if: always()
     runs-on: ubuntu-latest
@@ -220,7 +226,7 @@ jobs:
       continue-on-error: true
       with:
         allowed-failures: failing-job
-        allowed-skips: skipped-job
+        allowed-skips: skipped-job, empty-matrix
         jobs: ${{ toJSON(needs) }}
     - name: Fail on unexpected outcome (assertion step)
       run: exit 1
@@ -238,7 +244,6 @@ jobs:
     - allow-failures-n-skips
     - allow-skips
     - allow-partials
-    - empty-matrix
     if: always()
     runs-on: ubuntu-latest
     steps:

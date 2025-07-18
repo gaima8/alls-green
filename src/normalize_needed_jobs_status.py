@@ -153,6 +153,13 @@ def main(argv):
             )
         return 1
 
+    with summary_file_path.open(mode=FILE_APPEND_MODE) as summary_file:
+        write_lines_to_streams(
+            (
+                jobs.items()
+            ),
+            (sys.stderr, summary_file),
+        )
 
     job_matrix_succeeded = all(
         job['result'] in {'success', 'null'} for name, job in jobs.items()
